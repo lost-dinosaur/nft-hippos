@@ -9,7 +9,6 @@ def get_full_paths(directory):
     full_paths = []
     for file in pathlib.Path(directory).glob('**/*'):
         full_path = pathlib.Path(file).absolute()
-        print(full_path)
         if 'DS_Store' in str(full_path):
             continue
         full_paths.append(pathlib.Path(file).absolute())
@@ -44,7 +43,7 @@ def create_image(background_counter, base_counter, hats_counter, shades_counter,
     intermediate3 = Image.alpha_composite(intermediate2, cape)
     intermediate4 = Image.alpha_composite(intermediate3, mouth)
 
-    name = "./Hippos" + str(nft_counter) + ".png"
+    name = "../nfts/Hippos" + str(nft_counter) + ".png"
     intermediate4.save(name)
 
 
@@ -56,13 +55,3 @@ for background in range(len(backgrounds)):
                     for mth in range(len(mouths)):
                         create_image(background, base_image, ht, shd, cp, mth, nfts_to_make)
                         nfts_to_make += 1
-
-# bg = Image.open(backgrounds[0])
-# hippo = Image.open(base_images[0])
-# hippo.putalpha(128)
-# hat = Image.open(hats[0])
-# shades = Image.open(shades[0])
-#
-# bg.paste(hippo)
-# # bg.paste(hat)
-# bg.save('./result.png')
